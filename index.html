@@ -20,7 +20,7 @@ document.getElementById("findContact").addEventListener("click", findContact);
 document.getElementById("deleteContact").addEventListener("click", deleteContact);
     }
 function createContact() {
-   var myContact = navigator.contacts.create({"displayName": "Usuario Prueba"}); 
+   var myContact = navigator.contacts.create({"displayName": "Usuario"}); 
 	var phoneNumbers = [];
 
 phoneNumbers[0] = new ContactField('work', '768-555-1234', false);
@@ -55,7 +55,7 @@ myContact.save(function (contact_obj) {
 }
       function findContacts() {
    var options = new ContactFindOptions();
-   options.filter = "";
+   options.filter = "Usuario";
    options.multiple = true;
    fields = ["displayName"];
    navigator.contacts.find(fields, contactfindSuccess, contactfindError, options);
@@ -73,7 +73,7 @@ myContact.save(function (contact_obj) {
 }
       function deleteContact() {
    var options = new ContactFindOptions();
-   options.filter = "Usuario Prueba";
+   options.filter = "Usuario";
    options.multiple = false;
    fields = ["displayName"];
    navigator.contacts.find(fields, contactfindSuccess, contactfindError, options);
