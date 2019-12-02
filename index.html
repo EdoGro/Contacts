@@ -20,9 +20,7 @@ document.getElementById("findContact").addEventListener("click", findContact);
 document.getElementById("deleteContact").addEventListener("click", deleteContact);
     }
 function createContact() {
-   var myContact = navigator.contacts.create();
-contact.displayName = "Plumber";
-contact.nickname = "Plumber";  
+   var myContact = navigator.contacts.create({"displayName": "Usuario"}); 
    myContact.save(contactSuccess, contactError);
     
    function contactSuccess() {
