@@ -73,7 +73,7 @@ myContact.save(function (contact_obj) {
 }
       function deleteContact() {
    var options = new ContactFindOptions();
-   options.filter = "Test User";
+   options.filter = "Usuario Prueba";
    options.multiple = false;
    fields = ["displayName"];
    navigator.contacts.find(fields, contactfindSuccess, contactfindError, options);
