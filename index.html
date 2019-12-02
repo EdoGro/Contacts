@@ -20,7 +20,28 @@ document.getElementById("findContact").addEventListener("click", findContact);
 document.getElementById("deleteContact").addEventListener("click", deleteContact);
     }
 function createContact() {
-   var myContact = navigator.contacts.create({"displayName": "Usuario"}); 
+   var myContact = navigator.contacts.create({"displayName": "Usuario Prueba"}); 
+	var phoneNumbers = [];
+
+phoneNumbers[0] = new ContactField('work', '768-555-1234', false);
+phoneNumbers[1] = new ContactField('mobile', '999-555-5432', true); // preferred number
+phoneNumbers[2] = new ContactField('home', '203-555-7890', false);
+
+myContact.phoneNumbers = phoneNumbers;
+myContact.save(function (contact_obj) {
+    var contactObjToModify = contact_obj.clone();
+    contact_obj.remove(function(){
+        var phoneNumbers = [contactObjToModify.phoneNumbers[0]];
+        contactObjToModify.phoneNumbers = phoneNumbers;
+        contactObjToModify.save(function(c_obj){
+            console.log("All Done");
+        }, function(error){
+            console.log("Not able to save the cloned object: " + error);
+        });
+    }, function(contactError) {
+        console.log("Contact Remove Operation failed: " + contactError);
+    });
+});
    myContact.save(contactSuccess, contactError);
     
    function contactSuccess() {
